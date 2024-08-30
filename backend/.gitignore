@@ -1,0 +1,24 @@
+# .gitignore
+
+# Node modules
+node_modules/
+
+# Entorno
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Directorios del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración de editores de texto
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
