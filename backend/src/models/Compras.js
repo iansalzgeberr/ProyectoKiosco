@@ -1,19 +1,19 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
-const Cliente = require('./Cliente');
+const Proveedor = require('./Proveedor');
 
-const Venta = sequelize.define('Venta', {
-    venta_id: {
+const Compra = sequelize.define('Compra', {
+    compra_id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
     },
-    cliente_id: {
+    proveedor_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: Cliente,
-            key: 'cliente_id'
+            model: Proveedor,
+            key: 'proveedor_id'
         },
         allowNull: false
     },
@@ -25,9 +25,13 @@ const Venta = sequelize.define('Venta', {
         type: DataTypes.FLOAT,
         allowNull: false
     }
+}, {
+    tableName: 'compras',
+    timestamps: false
 });
 
-Cliente.hasMany(Venta, { foreignKey: 'cliente_id' });
-Venta.belongsTo(Cliente, { foreignKey: 'cliente_id' });
+// Definir asociaciones
+Proveedor.hasMany(Compra, { foreignKey: 'proveedor_id' });
+Compra.belongsTo(Proveedor, { foreignKey: 'proveedor_id' });
 
-module.exports = Venta;
+module.exports = Compra;
